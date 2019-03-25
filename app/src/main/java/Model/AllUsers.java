@@ -82,7 +82,43 @@ public class AllUsers implements Serializable {
         }
         return false;
     }
-    
+
+    public RetObject businessIsExisted(String id, String name) {
+        //Loop through owners list to see if it is in there
+        RetObject ret = new RetObject();
+        for (Owner owner : owners) {
+            if (owner.getID().equals(id)) {
+                ret.setBool(true);
+                ret.setMsg("Username already existed!");
+                return ret;
+            }
+            if (owner.getCompanyName().equals(name)) {
+                ret.setBool(true);
+                ret.setMsg("Name already existed!");
+                return ret;
+            }
+        }
+        return ret;
+    }
+
+    public RetObject customerIsExisted(String id, String name) {
+        //Loop through owners list to see if it is in there
+        RetObject ret = new RetObject();
+        for (Customer cust : customers) {
+            if (cust.getID().equals(id)) {
+                ret.setBool(true);
+                ret.setMsg("Username already existed!");
+                return ret;
+            }
+            if (cust.getCustomerName().equals(name)) {
+                ret.setBool(true);
+                ret.setMsg("Name already existed!");
+                return ret;
+            }
+        }
+        return ret;
+    }
+
     //Myo (Not working because of STDIN
     /*public boolean ChangeOpass(String id, String name, String password){
         for(Owner owner: owners){

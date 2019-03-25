@@ -1,10 +1,10 @@
 package Model;
 
 //This class packs the boolean value and the message string together, use as return value
-public class ReObject {
+public class RetObject {
     boolean bool;
     String msg;
-    public ReObject() {
+    public RetObject() {
         bool = false;
         msg = " ";
     }
