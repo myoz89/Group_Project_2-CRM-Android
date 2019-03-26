@@ -11,15 +11,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import Model.AllUsers;
+import Model.Customer;
 import Model.Owner;
 import Model.RetObject;
 
 public class SignUp extends AppCompatActivity {
-
-    Button confirm;
-    EditText nameEdit;
-    EditText idEdit;
-    EditText pw;
     AllUsers allUsers;
 
     @Override
@@ -85,19 +81,32 @@ public class SignUp extends AppCompatActivity {
     protected RetObject signUpAsOwner(String _name, String _id, String _pw) {
         //Check if business already existed
         RetObject ret = new RetObject();
-        if (!allUsers.businessIsExisted(_id, _name).getBool()) {
+        if (!allUsers.businessExisted(_id, _name).getBool()) {
             allUsers.addOwner(new Owner(_id,_pw,_name, 0));
             ret.setBool(true);
             ret.setMsg("Sign up successfully! Owner size: " + allUsers.getOwnerSize());
         } else {
-            ret.setBool(false);
-            ret.setMsg(allUsers.businessIsExisted(_id, _name).getMsg());
+            ret.setMsg(allUsers.businessExisted(_id, _name).getMsg());
         }
         return ret;
     }
 
     protected RetObject signUpAsCustomer(String _name, String _id, String _pw, String _aName) {
+        //Check if Customer already existed
         RetObject ret = new RetObject();
+        if (!allUsers.customerExisted(_id, _name).getBool()) {
+            Owner owner = allUsers.getOwnerBasedOnName(_aName);
+            if (owner == null) {
+                ret.setMsg("Could not find associated company for this account. Try again!");
+                return ret;
+            } else {
+                allUsers.addCustomer(new Customer(_id, _pw, _name, owner));
+                ret.setBool(true);
+                ret.setMsg("Sign up successfully! Customer size: " + allUsers.getCustomerSize());
+            }
+        } else {
+            ret.setMsg(allUsers.customerExisted(_id, _name).getMsg());
+        }
         return ret;
     }
 }

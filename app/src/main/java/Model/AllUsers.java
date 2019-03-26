@@ -73,17 +73,17 @@ public class AllUsers implements Serializable {
         return null;
     }
 
-    public boolean businessExists(String id, String name) {
+    public boolean businessExists(String name) {
         //Loop through owners list to see if it is in there
         for (Owner owner : owners) {
-            if (owner.getID().equals(id) || owner.getCompanyName().equals(name)) {
+            if (owner.getCompanyName().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public RetObject businessIsExisted(String id, String name) {
+    public RetObject businessExisted(String id, String name) {
         //Loop through owners list to see if it is in there
         RetObject ret = new RetObject();
         for (Owner owner : owners) {
@@ -101,7 +101,7 @@ public class AllUsers implements Serializable {
         return ret;
     }
 
-    public RetObject customerIsExisted(String id, String name) {
+    public RetObject customerExisted(String id, String name) {
         //Loop through owners list to see if it is in there
         RetObject ret = new RetObject();
         for (Customer cust : customers) {
