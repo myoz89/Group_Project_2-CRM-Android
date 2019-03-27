@@ -1,12 +1,19 @@
 package com.example.groupproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import java.io.IOException;
+
+import Controller.IO;
 import Model.AllUsers;
+
+import static Controller.IO.readFromFile;
 
 public class MainActivity extends AppCompatActivity {
     private static final int SECOND_ACTIVITY_REQUEST_CODE = 0;
@@ -18,12 +25,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Initialize the list of users
-        allUsers = new AllUsers();
+        //Initialize the list of users (load from file)
+        Context context = this; //Context to access file system
+        try {
+            allUsers = readFromFile(context);
+            Toast.makeText(MainActivity.this, "Loading data...", Toast.LENGTH_SHORT).show();
+
+        } catch (ClassNotFoundException | IOException o) {
+            allUsers = new AllUsers();
+        }
 
         //Set up the buttons
         //Sign In
-        butSignIn = (Button)findViewById(R.id.sign_in);
+        butSignIn = findViewById(R.id.sign_in);
         butSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Sign Up
-        butSignUp = (Button)findViewById(R.id.sign_up);
+        butSignUp = findViewById(R.id.sign_up);
         butSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.example.groupproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +11,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.io.IOException;
+
+import Controller.IO;
 import Model.AllUsers;
 import Model.Customer;
 import Model.Owner;
 import Model.RetObject;
+
+import static Controller.IO.writeToFile;
 
 public class SignUp extends AppCompatActivity {
     AllUsers allUsers;
@@ -25,6 +31,7 @@ public class SignUp extends AppCompatActivity {
         // Initialize the sign up
         final Intent intent = getIntent();
         allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
+        final Context context = this;
 
         // Get data from user input
         final RadioGroup radGroup = findViewById(R.id.select_user);
@@ -61,6 +68,13 @@ public class SignUp extends AppCompatActivity {
                 //After processing the sign up data
                 Toast.makeText(SignUp.this, retValue.getMsg(), Toast.LENGTH_SHORT).show();
                 if (retValue.getBool() == true) {
+                    // Save data to file
+                    try {
+                        writeToFile(context,allUsers);
+                    } catch (IOException e) {
+                        e.getStackTrace();
+                    }
+                    // Send data back to MainActivity
                     intent.putExtra("AllUsers", allUsers);
                     setResult(RESULT_OK, intent);
                     finish();
