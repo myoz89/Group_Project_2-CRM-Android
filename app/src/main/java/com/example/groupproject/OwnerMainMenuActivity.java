@@ -28,8 +28,8 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
 
 
         //manage credits
-        Button butConfirm = findViewById(R.id.manage_credits);
-        butConfirm.setOnClickListener(new View.OnClickListener() {
+        Button butCredits = findViewById(R.id.manage_credits);
+        butCredits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerMainMenuActivity.this, CreditActivity.class);
