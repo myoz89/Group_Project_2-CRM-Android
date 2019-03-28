@@ -17,6 +17,8 @@ import Model.Owner;
 
 public class CreditActivity extends AppCompatActivity {
     AllUsers allUsers;
+    Customer customer;
+    Owner owner;
     private String m_Text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,23 +26,23 @@ public class CreditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_credit);
 
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
+        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         String Userid = (String) intent.getSerializableExtra("id");
         final Context context = this;
 
-        Owner owner = allUsers.getOwnerBasedOnID(Userid);
-        Customer customer = allUsers.getCustomerBasedOnID(Userid);
+        owner = allUsers.getOwnerBasedOnID(Userid);
+        customer = allUsers.getCustomerBasedOnID(Userid);
 
         //if operating as owner
         if(owner != null)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Title");
+            builder.setTitle("Amount");
 
             // Set up the input
             final EditText input = new EditText(this);
             // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-            input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            input.setInputType(InputType.TYPE_CLASS_NUMBER);
             builder.setView(input);
 
             // Set up the buttons

@@ -21,7 +21,7 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main_menu);
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
+        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         owner = (Owner) intent.getSerializableExtra("owner");
         final Context context = this;
         // can remove it later, just add for testing
@@ -29,8 +29,8 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
 
 
         //manage credits
-        Button butConfirm = findViewById(R.id.manage_credits);
-        butConfirm.setOnClickListener(new View.OnClickListener() {
+        Button butCredits = findViewById(R.id.manage_credits);
+        butCredits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerMainMenuActivity.this, CreditActivity.class);
