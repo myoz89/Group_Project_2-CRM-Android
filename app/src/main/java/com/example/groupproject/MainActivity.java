@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if (owner != null && customer == null){
                     // sign in as owner
                     boolean isSignin = SignIn.Signin(sUserid,sPassword,allUsers);
-                    if (isSignin == true){ // if isSignin is false, wrong password
+                    if (isSignin){ // if isSignin is false, wrong password
                         // if sucessfully sing in, go to owner main menu
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
                         intent.putExtra("owner",owner);

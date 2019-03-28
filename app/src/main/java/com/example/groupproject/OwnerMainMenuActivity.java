@@ -24,9 +24,6 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
         allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
         owner = (Owner) intent.getSerializableExtra("owner");
         final Context context = this;
-        // can remove it later, just add for testing
-        //Toast.makeText(getBaseContext(),"signed in as owner!",Toast.LENGTH_SHORT).show();
-
 
         //manage credits
         Button butConfirm = findViewById(R.id.manage_credits);
