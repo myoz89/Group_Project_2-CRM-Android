@@ -1,5 +1,6 @@
 package com.example.groupproject;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import Model.AllUsers;
 import Model.Owner;
 
+
 public class OwnerMainMenuActivity extends AppCompatActivity {
     AllUsers allUsers;
     Owner owner;
@@ -18,7 +20,6 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main_menu);
-
         final Intent intent = getIntent();
         allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
         owner = (Owner) intent.getSerializableExtra("owner");
