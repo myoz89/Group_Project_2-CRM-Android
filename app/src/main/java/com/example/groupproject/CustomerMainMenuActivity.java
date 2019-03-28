@@ -22,13 +22,13 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_owner_main_menu);
 
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
+        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         customer = (Customer) intent.getSerializableExtra("customer");
         final Context context = this;
 
         //manage credits
-        Button butConfirm = findViewById(R.id.manage_credits);
-        butConfirm.setOnClickListener(new View.OnClickListener() {
+        Button butCredits = findViewById(R.id.manage_credits);
+        butCredits.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CustomerMainMenuActivity.this, CreditActivity.class);
