@@ -21,7 +21,7 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main_menu);
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
+        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         owner = (Owner) intent.getSerializableExtra("owner");
         final Context context = this;
         // can remove it later, just add for testing
