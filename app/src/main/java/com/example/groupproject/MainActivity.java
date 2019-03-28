@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     if (isSignin == true){ // if isSignin is false, wrong password
                         // if sucessfully sing in, go to owner main menu
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
-                        /*intent.putExtra("userid",sUserid);
-                        intent.putExtra("alluser",allUsers);*/
+                        intent.putExtra("owner",owner);
+                        intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
                     // in later, i like to show error msg when user put wrong password
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
                     if (isSignin) {
                         // if sucessfully sing in, go to owner main menu
                         Intent intent = new Intent(MainActivity.this, CustomerMainMenuActivity.class);
-                        /*intent.putExtra("userid",sUserid);
-                        intent.putExtra("alluser",allUsers);*/
+                        intent.putExtra("customer",customer);
+                        intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
                     // in later, i like to show error msg when user put wrong password
