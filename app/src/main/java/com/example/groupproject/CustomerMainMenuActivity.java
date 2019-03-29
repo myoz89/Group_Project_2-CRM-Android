@@ -26,8 +26,6 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
         allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         customer = (Customer) intent.getSerializableExtra("customer");
         final Context context = this;
-        // can remove it later, just add for testing
-        //Toast.makeText(getBaseContext(),"signed in as owner!",Toast.LENGTH_SHORT).show();
 
         TextView textView = (TextView) findViewById(R.id.customer_credits);
         textView.setText(Double.toString(customer.getCredit()));
@@ -58,6 +56,20 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
             }
         });
 
+
+        // view appointment
+        /*Button viewApts = findViewById(R.id.viewapts);
+        viewApts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerMainMenuActivity.this, DisplayCustomerAppointmentListActivity.class);
+                //send string id via intent so credit activity can get either customer or owner
+                intent.putExtra("customer",customer);
+                intent.putExtra("alluser",allUsers);
+                startActivity(intent);
+            }
+        });*/
+
         Button manAccount = findViewById(R.id.manage_account);
         manAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,5 +93,6 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 customer = (Customer)data.getSerializableExtra("customer");
             }
         }
+
     }
 }

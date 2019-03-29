@@ -17,6 +17,8 @@ import static Controller.IO.writeToFile;
 
 
 public class OwnerMainMenuActivity extends AppCompatActivity {
+
+    private static final int APPT_ACTIVITY_REQUEST_CODE = 1;
     private static final int SECOND_ACTIVITY_REQUEST_CODE = 2;
     AllUsers allUsers;
     Owner owner;
@@ -34,12 +36,10 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main_menu);
         final Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerid");
         allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         String ownerID = intent.getStringExtra("ownerID");
         owner = allUsers.getOwnerBasedOnID(ownerID);
-        final Context context = this;
-        // can remove it later, just add for testing
-        //Toast.makeText(getBaseContext(),"signed in as owner!",Toast.LENGTH_SHORT).show();
 
         //Display Info
         dName = owner.getdName();
@@ -55,6 +55,7 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
 
         TextView textView = (TextView) findViewById(R.id.owner_credits);
         textView.setText(Double.toString(owner.getCredit()));
+
 
         //manage credits
         Button butCredits = findViewById(R.id.manage_credits);
@@ -96,6 +97,31 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
             }
         });
 
+
+        // add appointment button
+        Button addApts = findViewById(R.id.addapts);
+        addApts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OwnerMainMenuActivity.this, AddAppointmentActivity.class);
+                intent.putExtra("ownerid",owner.getID());
+                intent.putExtra("alluser", allUsers);
+                startActivityForResult(intent, APPT_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        // view appointment button
+        Button viewApts = findViewById(R.id.viewapts);
+        viewApts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OwnerMainMenuActivity.this, DisplayOwnerAppointmentListActivity.class);
+                intent.putExtra("ownerid",owner.getID());
+                intent.putExtra("alluser", allUsers);
+                startActivity(intent);
+            }
+        });
+
         //manage account
         Button manAccount = findViewById(R.id.manage_account);
         manAccount.setOnClickListener(new View.OnClickListener() {
@@ -108,11 +134,17 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == APPT_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
 
         if (requestCode == ZERO_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
@@ -142,15 +174,12 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
+              
         if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
                 owner = (Owner)data.getSerializableExtra("owner");
+
 
             }
         }
