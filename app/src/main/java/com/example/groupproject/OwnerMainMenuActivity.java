@@ -9,21 +9,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import Model.AllUsers;
 import Model.Owner;
 
+import static Controller.IO.writeToFile;
+
 
 public class OwnerMainMenuActivity extends AppCompatActivity {
+    private static final int APPT_ACTIVITY_REQUEST_CODE = 0;
     AllUsers allUsers;
     Owner owner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main_menu);
         final Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerid");
         allUsers = (AllUsers)intent.getSerializableExtra("alluser");
-        owner = (Owner) intent.getSerializableExtra("owner");
+        owner = allUsers.getOwnerBasedOnID(ownerId);
         final Context context = this;
+
+        // can remove it later, just add for testing
+        Toast.makeText(getBaseContext(),"it is apts list size" + owner.getaptssize(),Toast.LENGTH_SHORT).show();
 
         //manage credits
         Button butCredits = findViewById(R.id.manage_credits);
@@ -51,5 +61,41 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // add appointment button
+        Button addApts = findViewById(R.id.addapts);
+        addApts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OwnerMainMenuActivity.this, AddAppointmentActivity.class);
+                intent.putExtra("ownerid",owner.getID());
+                intent.putExtra("alluser", allUsers);
+                startActivityForResult(intent, APPT_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        // view appointment button
+        Button viewApts = findViewById(R.id.viewapts);
+        viewApts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OwnerMainMenuActivity.this, DisplayOwnerAppointmentListActivity.class);
+                intent.putExtra("ownerid",owner.getID());
+                intent.putExtra("alluser", allUsers);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == APPT_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+            }
+        }
     }
 }

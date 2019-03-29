@@ -19,7 +19,11 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_main_menu);
+        setContentView(R.layout.activity_customer_main_menu);
+
+        // can remove it later, just add for testing
+        Toast.makeText(getBaseContext(),"signed in as customer!",Toast.LENGTH_SHORT).show();
+
 
         final Intent intent = getIntent();
         allUsers = (AllUsers)intent.getSerializableExtra("alluser");
@@ -52,5 +56,18 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // view appointment
+        /*Button viewApts = findViewById(R.id.viewapts);
+        viewApts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerMainMenuActivity.this, DisplayCustomerAppointmentListActivity.class);
+                //send string id via intent so credit activity can get either customer or owner
+                intent.putExtra("customer",customer);
+                intent.putExtra("alluser",allUsers);
+                startActivity(intent);
+            }
+        });*/
     }
 }

@@ -77,10 +77,10 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <Button
-            android:id="@+id/view_customer_button"
+            android:id="@+id/viewapts"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:text="Manage Appointment" />
+            android:text="Display Appointment" />
 
         <Button
             android:id="@+id/send_message_button"

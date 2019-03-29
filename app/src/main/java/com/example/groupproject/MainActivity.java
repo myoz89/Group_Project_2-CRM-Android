@@ -65,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
                     if (isSignin){ // if isSignin is false, wrong password
                         // if sucessfully sing in, go to owner main menu
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
-                        intent.putExtra("owner",owner);
+                        intent.putExtra("ownerid",owner.getID());
                         intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
-                    // in later, i like to show error msg when user put wrong password
+                    else {
+                        Toast.makeText(getBaseContext(),"wrong password.",Toast.LENGTH_SHORT).show();
+                    }
 
                 } else if (customer != null && owner == null){
                     // sign in as customer
@@ -81,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
-                    // in later, i like to show error msg when user put wrong password
+                    else {
+                        Toast.makeText(getBaseContext(),"wrong password.",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     Toast.makeText(getBaseContext(),"wrong user name or haven't sing up yet!",Toast.LENGTH_SHORT).show();

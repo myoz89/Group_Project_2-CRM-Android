@@ -8,6 +8,7 @@ package Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Owner implements Serializable {
     private ArrayList<Message> msgBox;
     
     private  ArrayList<Calendar> cal;
-    private  ArrayList<Customer> appCust;
+    private List<Customer> appCust;
     
     public Owner(String myid, String mypass, String mycomp,double mycredit)
     {
@@ -35,6 +36,7 @@ public class Owner implements Serializable {
         
         cal = new ArrayList<>();
         appCust = new ArrayList<>();
+
         
     }
     public void viewCustomers()
@@ -56,11 +58,14 @@ public class Owner implements Serializable {
         cal.add(_cal);
         appCust.add(_cust);
     }
+    public int getaptssize () {
+        return appCust.size();
+    }
     public ArrayList<Calendar> getAppointmentDateList()
     {
         return cal;
     }
-    public ArrayList<Customer> getAppointmentCustList()
+    public List<Customer> getAppointmentCustList()
     {
         return appCust;
     }
