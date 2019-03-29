@@ -19,6 +19,8 @@ import Model.Owner;
 import static Controller.IO.readFromFile;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int SECOND_ACTIVITY_REQUEST_CODE = 2;
     private static final int ZERO_ACTIVITY_REQUEST_CODE = 0;
     private Button butSignIn;
     private Button butSignUp;
@@ -62,15 +64,18 @@ public class MainActivity extends AppCompatActivity {
                 if (owner != null && customer == null){
                     // sign in as owner
                     boolean isSignin = SignIn.Signin(sUserid,sPassword,allUsers);
-                    if (isSignin == true){ // if isSignin is false, wrong password
+                    if (isSignin){ // if isSignin is false, wrong password
                         // if sucessfully sing in, go to owner main menu
                         //allUsers.ChangeOpass(sUserid,sPassword,"zaw");
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
+
                         intent.putExtra("ownerID",owner.getID());
                         intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
-                    // in later, i like to show error msg when user put wrong password
+                    else {
+                        Toast.makeText(getBaseContext(),"wrong password.",Toast.LENGTH_SHORT).show();
+                    }
 
                 } else if (customer != null && owner == null){
                     // sign in as customer
@@ -82,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("alluser",allUsers);
                         startActivity(intent);
                     }
-                    // in later, i like to show error msg when user put wrong password
+                    else {
+                        Toast.makeText(getBaseContext(),"wrong password.",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     Toast.makeText(getBaseContext(),"wrong user name or haven't sing up yet!",Toast.LENGTH_SHORT).show();

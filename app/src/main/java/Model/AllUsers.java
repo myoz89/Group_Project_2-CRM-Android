@@ -73,6 +73,7 @@ public class AllUsers implements Serializable {
         return null;
     }
 
+
     public boolean businessExists(String name) {
         //Loop through owners list to see if it is in there
         for (Owner owner : owners) {
@@ -187,6 +188,7 @@ public class AllUsers implements Serializable {
     public int getCustomerSize() {
         return customers.size();
     }
+
 
     //Delete Owner account function
     public boolean DeleteOaccount(String id, String password){

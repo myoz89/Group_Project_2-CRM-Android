@@ -7,21 +7,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import Model.AllUsers;
 import Model.Owner;
 
+import static Controller.IO.writeToFile;
+
 public class AddAppointmentActivity extends AppCompatActivity {
 
-    private Owner owner;
-    private String ownerId;
-    private AllUsers allUsers;
-
+     Owner owner;
+     AllUsers allUsers;
     private EditText mm,dd,yy,custId;
     private int month,day,year;
     private String customerId;
+    private Calendar cal;
 
     private Button cretApt;
 
@@ -30,8 +32,9 @@ public class AddAppointmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
 
-        ownerId = (String) getIntent().getSerializableExtra("ownerid");
-        allUsers = (AllUsers) getIntent().getSerializableExtra("AllUsers");
+        final Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerid");
+        allUsers = (AllUsers) intent.getSerializableExtra("alluser");
         owner = allUsers.getOwnerBasedOnID(ownerId);
 
         mm = findViewById(R.id.mm);
@@ -49,11 +52,20 @@ public class AddAppointmentActivity extends AppCompatActivity {
                 year = Integer.valueOf(yy.getText().toString());
                 customerId = custId.getText().toString();
 
-                Calendar cal = new GregorianCalendar(month,day,year);
+                cal = new GregorianCalendar(year,month,day);
                 owner.addAppointment(cal,allUsers.getCustomerBasedOnID(customerId));
 
-                Intent intent = new Intent(AddAppointmentActivity.this, OwnerMainMenuActivity.class);
-                startActivity(intent);
+                try {
+                    writeToFile(AddAppointmentActivity.this,allUsers);
+                } catch (IOException e) {
+                    e.getStackTrace();
+                }
+                intent.putExtra("AllUsers", allUsers);
+                //intent.putExtra("owner", owner);
+
+                setResult(RESULT_OK, intent);
+                finish();
+
             }
         });
 
