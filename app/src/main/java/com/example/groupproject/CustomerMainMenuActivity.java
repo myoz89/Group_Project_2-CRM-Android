@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.TextView;
+import android.widget.Toast;
 import Model.AllUsers;
 import Model.Customer;
 
@@ -14,10 +15,12 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
 
     AllUsers allUsers;
     Customer customer;
+    private int SECOND_ACTIVITY_REQUEST_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_main_menu);
+        setContentView(R.layout.activity_customer_main_menu);
 
         final Intent intent = getIntent();
         allUsers = (AllUsers)intent.getSerializableExtra("alluser");
@@ -26,7 +29,8 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
         // can remove it later, just add for testing
         //Toast.makeText(getBaseContext(),"signed in as owner!",Toast.LENGTH_SHORT).show();
 
-
+        TextView textView = (TextView) findViewById(R.id.customer_credits);
+        textView.setText(Double.toString(customer.getCredit()));
         //manage credits
         Button butCredits = findViewById(R.id.manage_credits);
         butCredits.setOnClickListener(new View.OnClickListener() {
@@ -65,5 +69,17 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+                customer = (Customer)data.getSerializableExtra("customer");
+            }
+        }
     }
 }

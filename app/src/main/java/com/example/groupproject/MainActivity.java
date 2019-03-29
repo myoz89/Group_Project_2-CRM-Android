@@ -19,6 +19,8 @@ import Model.Owner;
 import static Controller.IO.readFromFile;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int SECOND_ACTIVITY_REQUEST_CODE = 2;
     private static final int ZERO_ACTIVITY_REQUEST_CODE = 0;
     private Button butSignIn;
     private Button butSignUp;
