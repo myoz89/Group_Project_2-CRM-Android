@@ -15,6 +15,7 @@ import Model.Owner;
 
 
 public class OwnerMainMenuActivity extends AppCompatActivity {
+    private static final int SECOND_ACTIVITY_REQUEST_CODE = 2;
     AllUsers allUsers;
     Owner owner;
     @Override
@@ -47,16 +48,30 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
 
 
 
-        //cancel button
+        //SignOut button
         Button butCancel = findViewById(R.id.sign_out_button);
         butCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Send data back to MainActivity
-                intent.putExtra("AllUsers", allUsers);
-                setResult(RESULT_OK, intent);
+                // Send data back
+                Intent intent1 = new Intent(OwnerMainMenuActivity.this,MainActivity.class);
+                intent1.putExtra("AllUsers", allUsers);
+                setResult(RESULT_OK, intent1);
+                startActivityForResult(intent1,SECOND_ACTIVITY_REQUEST_CODE);
                 finish();
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+                owner = (Owner)data.getSerializableExtra("owner");
+
+            }
+        }
     }
 }

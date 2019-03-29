@@ -17,6 +17,8 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
 
     AllUsers allUsers;
     Customer customer;
+    private int SECOND_ACTIVITY_REQUEST_CODE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,5 +59,17 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+                customer = (Customer)data.getSerializableExtra("customer");
+            }
+        }
     }
 }
