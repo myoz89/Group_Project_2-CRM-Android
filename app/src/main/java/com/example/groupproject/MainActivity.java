@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     boolean isSignin = SignIn.Signin(sUserid,sPassword,allUsers);
                     if (isSignin == true){ // if isSignin is false, wrong password
                         // if sucessfully sing in, go to owner main menu
+                        //allUsers.ChangeOpass(sUserid,sPassword,"zaw");
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
                         intent.putExtra("owner",owner);
                         intent.putExtra("alluser",allUsers);

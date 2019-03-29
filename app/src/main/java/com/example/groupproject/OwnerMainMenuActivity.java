@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import Model.AllUsers;
 import Model.Owner;
@@ -52,6 +51,19 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 intent.putExtra("AllUsers", allUsers);
                 setResult(RESULT_OK, intent);
                 finish();
+            }
+        });
+
+        //manage account
+        Button manAccount = findViewById(R.id.manage_account);
+        manAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OwnerMainMenuActivity.this, ManageOwnerAccountActivity.class);
+                //send string id via intent so credit activity can get either customer or owner
+                //intent.putExtra("id",owner.getID());
+                intent.putExtra("alluser",allUsers);
+                startActivity(intent);
             }
         });
     }
