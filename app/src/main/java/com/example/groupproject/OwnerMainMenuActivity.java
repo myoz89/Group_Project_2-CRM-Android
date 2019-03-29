@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import Model.AllUsers;
@@ -27,6 +28,9 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
         // can remove it later, just add for testing
         //Toast.makeText(getBaseContext(),"signed in as owner!",Toast.LENGTH_SHORT).show();
 
+
+        TextView textView = (TextView) findViewById(R.id.owner_credits);
+        textView.setText(Double.toString(owner.getCredit()));
 
         //manage credits
         Button butCredits = findViewById(R.id.manage_credits);
