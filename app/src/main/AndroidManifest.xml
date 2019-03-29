@@ -15,6 +15,7 @@
         <activity android:name=".ManageCustomerAccountActivity" />
         <activity android:name=".ChangeOwnerPasswordActivity" />
         <activity android:name=".ManageOwnerAccountActivity" />
+        <activity android:name=".SettingsMenu"></activity>
         <activity android:name=".AddAppointmentActivity" />
         <activity android:name=".CreditActivity" />
         <activity android:name=".CustomerMainMenuActivity" />
