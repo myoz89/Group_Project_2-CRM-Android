@@ -21,7 +21,7 @@ public class SettingsMenu extends AppCompatActivity {
         //Set the checkboxes to the values indicated by the booleans
         final CheckBox checkName = findViewById(R.id.check_name);
         checkName.setChecked(dName);
-        CheckBox checkCredit = findViewById(R.id.check_credit);
+        final CheckBox checkCredit = findViewById(R.id.check_credit);
         checkCredit.setChecked(dCredit);
 
         // Done Button
@@ -31,7 +31,7 @@ public class SettingsMenu extends AppCompatActivity {
             public void onClick(View v) {
                 //Set the values based on the checkboxes
                 intent.putExtra("dName", checkName.isChecked());
-                intent.putExtra("dCredit", checkName.isChecked());
+                intent.putExtra("dCredit", checkCredit.isChecked());
                 setResult(RESULT_OK, intent);
                 finish();
             }

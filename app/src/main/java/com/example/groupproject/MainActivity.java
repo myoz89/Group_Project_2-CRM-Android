@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         // get data from edit text
         userID = findViewById(R.id.user_name);
         password = findViewById(R.id.password);
-
+        userID.setText("");
+        password.setText("");
         //Set up the buttons
         //Sign In
         butSignIn = findViewById(R.id.sign_in);

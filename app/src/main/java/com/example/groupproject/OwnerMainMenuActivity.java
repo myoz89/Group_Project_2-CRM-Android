@@ -31,13 +31,11 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_main_menu);
+
         final Intent intent = getIntent();
         allUsers = (AllUsers)intent.getSerializableExtra("alluser");
         String ownerID = intent.getStringExtra("ownerID");
         owner = allUsers.getOwnerBasedOnID(ownerID);
-        final Context context = this;
-        // can remove it later, just add for testing
-        //Toast.makeText(getBaseContext(),"signed in as owner!",Toast.LENGTH_SHORT).show();
 
         //Display Info
         dName = owner.getdName();

@@ -60,12 +60,10 @@ public class ChangeOwnerPasswordActivity extends AppCompatActivity {
                         e.getStackTrace();
                     }
                     //as user change password, application force user to log out and send the user to main activity to signing in.
-                    //Intent i = new Intent(getBaseContext(), MainActivity.class);
-                    //i.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
-                    //startActivity(i);
-                    intent.putExtra("AllUsers", allUsers);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    i.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+
 
                     Toast.makeText(getBaseContext(),"Password Successfully Changed. Signing out...",Toast.LENGTH_LONG).show();
                 }
