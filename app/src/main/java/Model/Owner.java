@@ -24,7 +24,12 @@ public class Owner implements Serializable {
     
     private  ArrayList<Calendar> cal;
     private List<Customer> appCust;
-    
+    private  ArrayList<Customer> appCust;
+
+    //Display values
+    private boolean dName;
+    private boolean dCredit;
+
     public Owner(String myid, String mypass, String mycomp,double mycredit)
     {
         id = myid;
@@ -36,9 +41,16 @@ public class Owner implements Serializable {
         
         cal = new ArrayList<>();
         appCust = new ArrayList<>();
-
-        
+        dName = true;
+        dCredit = true;
     }
+
+    //Getter setter for display toggle values
+    public boolean getdName() {return dName;}
+    public void setdName(boolean _val) {dName = _val;}
+    public boolean getdCredit() {return dCredit;}
+    public void setdCredit(boolean _val) {dCredit = _val;}
+
     public void viewCustomers()
     {
         System.out.println("Customers: ");
