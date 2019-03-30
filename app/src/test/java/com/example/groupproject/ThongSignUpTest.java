@@ -16,11 +16,11 @@ import static org.junit.Assert.assertEquals;
  */
 
 //Test for sign up feature methods
-public class SignUpTest {
+public class ThongSignUpTest {
 
     SignUp signUp;
 
-    public SignUpTest() {
+    public ThongSignUpTest() {
         signUp = new SignUp();
         signUp.allUsersInIt(); // Initialize all user
     }

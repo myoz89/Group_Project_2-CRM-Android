@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, OwnerMainMenuActivity.class);
 
                         intent.putExtra("ownerID",owner.getID());
-                        intent.putExtra("alluser",allUsers);
+                        intent.putExtra("AllUsers",allUsers);
                         startActivity(intent);
                     }
                     else {
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         // if sucessfully sing in, go to owner main menu
                         Intent intent = new Intent(MainActivity.this, CustomerMainMenuActivity.class);
                         intent.putExtra("customer",customer);
-                        intent.putExtra("alluser",allUsers);
+                        intent.putExtra("AllUsers",allUsers);
                         startActivity(intent);
                     }
                     else {

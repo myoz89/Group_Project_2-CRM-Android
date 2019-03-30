@@ -23,7 +23,7 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_main_menu);
 
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
         customer = (Customer) intent.getSerializableExtra("customer");
         final Context context = this;
 
@@ -37,7 +37,7 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(CustomerMainMenuActivity.this, CreditActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 intent.putExtra("id",customer.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
             }
         });
@@ -65,19 +65,19 @@ public class CustomerMainMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(CustomerMainMenuActivity.this, DisplayCustomerAppointmentListActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 intent.putExtra("customer",customer);
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
             }
         });*/
 
-        Button manAccount = findViewById(R.id.manage_account);
+        Button manAccount = findViewById(R.id.manage_customer_account);
         manAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CustomerMainMenuActivity.this, ManageCustomerAccountActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 //intent.putExtra("id",owner.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
             }
         });

@@ -3,12 +3,11 @@ package com.example.groupproject;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.io.IOException;
 import Model.AllUsers;
 import Model.Owner;
@@ -38,7 +37,7 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
 
         final Intent intent = getIntent();
         String ownerId = intent.getStringExtra("ownerid");
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers) intent.getSerializableExtra("AllUsers");
         String ownerID = intent.getStringExtra("ownerID");
         owner = allUsers.getOwnerBasedOnID(ownerID);
 
@@ -65,11 +64,11 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerMainMenuActivity.this, CreditActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
-                intent.putExtra("id",owner.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("id", owner.getID());
+                intent.putExtra("AllUsers", allUsers);
                 startActivity(intent);
-                }
-            });
+            }
+        });
 
 
         //Setting button
@@ -90,10 +89,10 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Send data back
-                Intent intent1 = new Intent(OwnerMainMenuActivity.this,MainActivity.class);
+                Intent intent1 = new Intent(OwnerMainMenuActivity.this, MainActivity.class);
                 intent1.putExtra("AllUsers", allUsers);
                 setResult(RESULT_OK, intent1);
-                startActivityForResult(intent1,SECOND_ACTIVITY_REQUEST_CODE);
+                startActivityForResult(intent1, SECOND_ACTIVITY_REQUEST_CODE);
                 finish();
             }
         });
@@ -105,8 +104,8 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerMainMenuActivity.this, AddAppointmentActivity.class);
-                intent.putExtra("ownerid",owner.getID());
-                intent.putExtra("alluser", allUsers);
+                intent.putExtra("ownerid", owner.getID());
+                intent.putExtra("AllUsers", allUsers);
                 startActivityForResult(intent, APPT_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -117,8 +116,8 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OwnerMainMenuActivity.this, DisplayOwnerAppointmentListActivity.class);
-                intent.putExtra("ownerid",owner.getID());
-                intent.putExtra("alluser", allUsers);
+                intent.putExtra("ownerid", owner.getID());
+                intent.putExtra("AllUsers", allUsers);
                 startActivity(intent);
             }
         });
@@ -131,11 +130,10 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 Intent intent = new Intent(OwnerMainMenuActivity.this, ManageOwnerAccountActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 //intent.putExtra("id",owner.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers", allUsers);
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -145,8 +143,9 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
 
         if (requestCode == APPT_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
-
+                allUsers = (AllUsers) data.getSerializableExtra("AllUsers");
+            }
+        }
         if (requestCode == ZERO_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 //Get data
@@ -159,7 +158,7 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 // Save data to file
                 Context context = OwnerMainMenuActivity.this;
                 try {
-                    writeToFile(context,allUsers);
+                    writeToFile(context, allUsers);
                 } catch (IOException e) {
                     e.getStackTrace();
                 }
@@ -175,14 +174,17 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
                 }
             }
         }
-              
+
         if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
-                owner = (Owner)data.getSerializableExtra("owner");
-
+                allUsers = (AllUsers) data.getSerializableExtra("AllUsers");
+                String ownerID = data.getStringExtra("ownerID");
+                owner = allUsers.getOwnerBasedOnID(ownerID);
 
             }
         }
     }
+
 }
+
+

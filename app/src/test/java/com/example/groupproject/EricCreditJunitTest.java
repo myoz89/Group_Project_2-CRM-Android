@@ -8,12 +8,12 @@ import Model.Owner;
 
 import static org.junit.Assert.assertEquals;
 
-public class CreditJunitTest {
+public class EricCreditJunitTest {
 
     CreditActivity creditActivity;
 
 
-    public CreditJunitTest() {
+    public EricCreditJunitTest() {
         creditActivity = new CreditActivity();
     }
 

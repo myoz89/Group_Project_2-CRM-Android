@@ -36,7 +36,7 @@ public class CreditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_credit);
 
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
         String Userid = (String) intent.getSerializableExtra("id");
         final Context context = this;
 
@@ -164,13 +164,13 @@ public class CreditActivity extends AppCompatActivity {
         }
         }); //end of withdraw
 
-        Button send = findViewById(R.id.send_but);
+       /* Button send = findViewById(R.id.send_but);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        }); //end of send for owner
+        }); //end of send for owner*/
 
         //return button
         Button butCancel = findViewById(R.id.return_but);
@@ -181,7 +181,7 @@ public class CreditActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(CreditActivity.this,OwnerMainMenuActivity.class);
                 intent1.putExtra("AllUsers", allUsers);
                 if(owner != null)
-                    intent1.putExtra("owner", owner);
+                    intent1.putExtra("ownerID", owner.getID());
                 else
                     intent1.putExtra("customer",customer);
                 setResult(RESULT_OK, intent1);

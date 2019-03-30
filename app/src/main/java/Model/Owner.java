@@ -24,7 +24,6 @@ public class Owner implements Serializable {
     
     private  ArrayList<Calendar> cal;
     private List<Customer> appCust;
-    private  ArrayList<Customer> appCust;
 
     //Display values
     private boolean dName;

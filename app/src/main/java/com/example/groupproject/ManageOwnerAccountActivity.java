@@ -19,7 +19,7 @@ public class ManageOwnerAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_owner_account);
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
         Button chaPassword = findViewById(R.id.change_password);
 
         //call changepassword activity on click.
@@ -28,7 +28,7 @@ public class ManageOwnerAccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ManageOwnerAccountActivity.this, ChangeOwnerPasswordActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
                 //startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
             }
@@ -42,7 +42,7 @@ public class ManageOwnerAccountActivity extends AppCompatActivity {
                 Intent intent = new Intent(ManageOwnerAccountActivity.this, DeleteOwnerAccountActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 //intent.putExtra("id",owner.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
             }
         });

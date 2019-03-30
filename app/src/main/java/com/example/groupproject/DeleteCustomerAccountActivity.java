@@ -29,7 +29,7 @@ public class DeleteCustomerAccountActivity extends AppCompatActivity {
 
         final Context context = this;
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
 
         dcuserID = findViewById(R.id.delete_customer_user_name);
         dcpassword = findViewById(R.id.delete_customer_password);

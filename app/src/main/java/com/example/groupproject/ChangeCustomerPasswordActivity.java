@@ -29,7 +29,7 @@ public class ChangeCustomerPasswordActivity extends AppCompatActivity {
         final Context context = this;
 
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
 
         cuserID = findViewById(R.id.cust_cuser_name);
         opassword = findViewById(R.id.cust_old_password);

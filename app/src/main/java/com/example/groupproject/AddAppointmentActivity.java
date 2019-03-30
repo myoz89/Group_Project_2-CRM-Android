@@ -34,7 +34,7 @@ public class AddAppointmentActivity extends AppCompatActivity {
 
         final Intent intent = getIntent();
         String ownerId = intent.getStringExtra("ownerid");
-        allUsers = (AllUsers) intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers) intent.getSerializableExtra("AllUsers");
         owner = allUsers.getOwnerBasedOnID(ownerId);
 
         mm = findViewById(R.id.mm);

@@ -29,7 +29,7 @@ public class DeleteOwnerAccountActivity extends AppCompatActivity {
 
         final Context context = this;
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
 
         duserID = findViewById(R.id.delete_user_name);
         dpassword = findViewById(R.id.delete_password);

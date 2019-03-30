@@ -20,7 +20,7 @@ public class ManageCustomerAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_customer_account);
 
         final Intent intent = getIntent();
-        allUsers = (AllUsers)intent.getSerializableExtra("alluser");
+        allUsers = (AllUsers)intent.getSerializableExtra("AllUsers");
 
         Button chaCustpassword = findViewById(R.id.change_customer_password);
         //call changepassword activity on click.
@@ -30,7 +30,7 @@ public class ManageCustomerAccountActivity extends AppCompatActivity {
                 Intent intent = new Intent(ManageCustomerAccountActivity.this, ChangeCustomerPasswordActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 //intent.putExtra("id",owner.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
             }
         });
@@ -43,7 +43,7 @@ public class ManageCustomerAccountActivity extends AppCompatActivity {
                 Intent intent = new Intent(ManageCustomerAccountActivity.this, DeleteCustomerAccountActivity.class);
                 //send string id via intent so credit activity can get either customer or owner
                 //intent.putExtra("id",owner.getID());
-                intent.putExtra("alluser",allUsers);
+                intent.putExtra("AllUsers",allUsers);
                 startActivity(intent);
             }
         });

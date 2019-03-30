@@ -96,7 +96,7 @@ public class SignUp extends AppCompatActivity {
         if (!allUsers.businessExisted(_id, _name).getBool()) {
             allUsers.addOwner(new Owner(_id,_pw,_name, 0));
             ret.setBool(true);
-            ret.setMsg("Sign up successfully! Owner size: " + allUsers.getOwnerSize());
+            ret.setMsg("Sign up successfully!");
         } else {
             ret.setMsg(allUsers.businessExisted(_id, _name).getMsg());
         }
@@ -114,7 +114,7 @@ public class SignUp extends AppCompatActivity {
             } else {
                 allUsers.addCustomer(new Customer(_id, _pw, _name, owner));
                 ret.setBool(true);
-                ret.setMsg("Sign up successfully! Customer size: " + allUsers.getCustomerSize());
+                ret.setMsg("Sign up successfully!");
             }
         } else {
             ret.setMsg(allUsers.customerExisted(_id, _name).getMsg());

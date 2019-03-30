@@ -1,4 +1,4 @@
-package ZarniTestCases;
+package com.example.groupproject;
 
 import org.junit.Test;
 
@@ -19,12 +19,12 @@ import static org.junit.Assert.assertFalse;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class SigninTest {
+public class ZarniSigninTest {
     Owner owner;
     Customer customer,customer2;
     AllUsers allUsers;
 
-    public SigninTest(){
+    public ZarniSigninTest(){
         owner = new Owner("zarni123","1234","zarni",0);
         customer = new Customer("pyae123","1234","pyae",owner);
         customer2 = new Customer("zone123","1234","zone",owner);
