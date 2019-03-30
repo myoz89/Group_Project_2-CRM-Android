@@ -24,10 +24,12 @@ public class DisplayOwnerAppointmentListActivity extends AppCompatActivity imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_owner_appointment_list);
 
+        // get owner
         String ownerId = getIntent().getStringExtra("ownerid");
         allUsers = (AllUsers) getIntent().getSerializableExtra("AllUsers");
         owner = allUsers.getOwnerBasedOnID(ownerId);
 
+        // set up for recycler view
         RecyclerView recyclerView = findViewById(R.id.appointment);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DisplayOwnerAppointmentListAdapter(this,owner);

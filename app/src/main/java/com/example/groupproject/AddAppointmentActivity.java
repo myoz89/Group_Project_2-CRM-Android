@@ -32,36 +32,41 @@ public class AddAppointmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
 
+        // get owner
         final Intent intent = getIntent();
         String ownerId = intent.getStringExtra("ownerid");
         allUsers = (AllUsers) intent.getSerializableExtra("AllUsers");
         owner = allUsers.getOwnerBasedOnID(ownerId);
 
+        // get user input
         mm = findViewById(R.id.mm);
         dd = findViewById(R.id.dd);
         yy = findViewById(R.id.yy);
         custId = findViewById(R.id.editText5);
 
+        // create an appointment
         cretApt = findViewById(R.id.crtapt);
         cretApt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                // set up day, month, year in gregoriancalendar format
                 month = Integer.valueOf(mm.getText().toString());
                 day = Integer.valueOf(dd.getText().toString());
                 year = Integer.valueOf(yy.getText().toString());
                 customerId = custId.getText().toString();
 
                 cal = new GregorianCalendar(year,month,day);
+                // add into appoint list that inside of owner class
                 owner.addAppointment(cal,allUsers.getCustomerBasedOnID(customerId));
 
+                // save the data
                 try {
                     writeToFile(AddAppointmentActivity.this,allUsers);
                 } catch (IOException e) {
                     e.getStackTrace();
                 }
                 intent.putExtra("AllUsers", allUsers);
-                //intent.putExtra("owner", owner);
 
                 setResult(RESULT_OK, intent);
                 finish();
