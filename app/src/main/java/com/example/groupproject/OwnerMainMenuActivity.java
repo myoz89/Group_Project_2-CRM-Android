@@ -89,10 +89,8 @@ public class OwnerMainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Send data back
-                Intent intent1 = new Intent(OwnerMainMenuActivity.this, MainActivity.class);
-                intent1.putExtra("AllUsers", allUsers);
-                setResult(RESULT_OK, intent1);
-                startActivityForResult(intent1, SECOND_ACTIVITY_REQUEST_CODE);
+                intent.putExtra("AllUsers", allUsers);
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

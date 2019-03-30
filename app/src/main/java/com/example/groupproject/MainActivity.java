@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         // get data from edit text
         userID = findViewById(R.id.user_name);
         password = findViewById(R.id.password);
-        userID.setText("");
-        password.setText("");
         //Set up the buttons
         //Sign In
         butSignIn = findViewById(R.id.sign_in);
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                         intent.putExtra("ownerID",owner.getID());
                         intent.putExtra("AllUsers",allUsers);
-                        startActivity(intent);
+                        startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
                     }
                     else {
                         Toast.makeText(getBaseContext(),"wrong password.",Toast.LENGTH_SHORT).show();
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, CustomerMainMenuActivity.class);
                         intent.putExtra("customer",customer);
                         intent.putExtra("AllUsers",allUsers);
-                        startActivity(intent);
+                        startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
                     }
                     else {
                         Toast.makeText(getBaseContext(),"wrong password.",Toast.LENGTH_SHORT).show();
@@ -116,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == ZERO_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+            }
+        }
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                allUsers = (AllUsers)data.getSerializableExtra("AllUsers");
+                // Empty the textboxes
+                userID.setText("");
+                password.setText("");
             }
         }
     }
