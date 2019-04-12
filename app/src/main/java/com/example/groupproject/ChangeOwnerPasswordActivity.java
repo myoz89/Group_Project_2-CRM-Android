@@ -11,11 +11,8 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import Controller.SignIn;
-import Controller.ChangePassword;
 import Model.AllUsers;
 
-import static Controller.IO.readFromFile;
 import static Controller.IO.writeToFile;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 

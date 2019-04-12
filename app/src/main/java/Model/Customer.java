@@ -15,16 +15,20 @@ import java.util.ArrayList;
 public class Customer implements Serializable {
     private String id;
     private String password;
+    private String SecurityQuiz;
+    private String SecurityAnswer;
     private String customerName;
     private Owner business;
     private double credit;
     private ArrayList<Message> msgBox;
     
-    public Customer(String myid, String mypassword, String mycustomerName, Owner _bus)
+    public Customer(String myid, String mypassword, String mycustomerName,Owner _bus, String  secuQuiz,String secuAns)
     {
         id = myid;
         password = mypassword;
         customerName = mycustomerName;
+        SecurityQuiz = secuQuiz;
+        SecurityAnswer = secuAns;
         business = _bus;
         credit = 0;
         msgBox = new ArrayList<>();
@@ -50,6 +54,8 @@ public class Customer implements Serializable {
     {
         return customerName;
     }
+    public String getSecurityQuiz(){return SecurityQuiz;}
+    public String getSecurityAnswer() {return SecurityAnswer;}
     public void setBusiness(Owner _bus)
     {
         business = _bus;

@@ -4,16 +4,15 @@ import Model.AllUsers;
 import Model.Customer;
 import Model.Owner;
 
-public class ChangePassword {
+public class ForgotPassword {
     private static AllUsers allUser;
-    private static String userName,passWord, npassWord;
+    private static String userName,passWord;
     private static Owner owners = null;
     private static Customer customer = null;
 
-    public static boolean ChangePassword(String _userName, String _passWord, String _npassWord, AllUsers _allUser){
+    public static boolean ForgotPassword(String _userName, String _passWord, AllUsers _allUser){
         userName = _userName;
         passWord = _passWord;
-        npassWord = _npassWord;
         allUser = _allUser;
 
         owners = allUser.getOwnerBasedOnID(_userName);
@@ -28,7 +27,6 @@ public class ChangePassword {
         // check the owner list first
         if(owners != null && customer == null){
             if (owners.getPassword().equals(_passWord)){
-                owners.setPassword(npassWord);
                 return true;
             }
             else {
